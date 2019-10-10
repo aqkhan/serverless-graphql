@@ -1,0 +1,25 @@
+org: aqkhan
+app: as-dashboard
+
+service: apollo-serverless
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  apiName: test-serverless-graphql-api
+
+functions:
+  graphql:
+    handler: graphql.graphqlHandler
+    events: 
+      - http: 
+          path: graphql
+          method: post
+          cors: true
+      - http: 
+          path: graphql
+          method: get
+          cors: true
+
+plugins:
+  - serverless-offline
